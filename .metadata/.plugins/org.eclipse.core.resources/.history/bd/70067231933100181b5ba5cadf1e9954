@@ -1,0 +1,13 @@
+
+public class TestString {
+
+	public static void main(String[] args) 
+	{	
+		//String 객체 생성
+		String str; //String을 참조하는 참조 변수(Reference 변수) 생성
+		str = new String("Hello darkness my old friend."); //객체 생성
+		
+		
+	}
+
+}

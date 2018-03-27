@@ -1,0 +1,48 @@
+
+public class Loop {
+
+	public static void main(String[] args) 
+	{
+		//1~10까지의 정수를 화면에 출력하는 프로그램.
+		int i; //루프 변수 선언
+		int sum = 0;
+		
+		i = 1; //1. 루프 변수 초기화
+		while(i<=10) //2. 루프 조건식
+		{
+			System.out.println(i);
+			i++; //4. 루프 변수 변화.
+		}
+		
+		System.out.println("for구문을 사용한 같은 반복문.");
+		for(i=1;i<=10;i++)
+			System.out.println(i);
+		//매우 간단하게 정리가 되는 것을 볼 수 있다.
+		
+		i = 1; //1. 루프 변수 초기화
+		while(i<=10) //2. 루프 조건문
+		{
+			sum = sum + i; //3. 실행문
+			i++; //4. 루프 변수 변화
+		}
+		
+		System.out.println("1부터 10까지의 합 : " + sum);
+		
+		String str = "hello darkness my old friend";
+		int count = 0;
+		for(i=0;i < str.length(); i++)
+		{
+			if(str.charAt(count) != 'l')
+				continue;
+	
+			count++;
+			
+		}
+		
+		System.out.println("문장에서 나온 l의 개수 : " + count + "개");
+		
+		System.out.println("============프로그램 종료.============");
+	}
+	
+}
+	

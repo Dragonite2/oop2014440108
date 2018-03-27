@@ -1,0 +1,14 @@
+
+public class TestString 
+{
+	public static void main(String[] args) 
+	{	
+		int a = 10; //int 자료형의 변수 a 생성 + 값 10을 a에 저장함.
+		//String 객체 생성
+		String str; //Class String의 객체를 참조할 수 있는 참조 변수(Reference 변수) 생성
+		str = new String("Hello darkness my old friend."); //객체 생성
+		
+		
+	}
+
+}

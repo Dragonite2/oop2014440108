@@ -1,0 +1,7 @@
+			for(a=1;a<6;a+=2)
+			{
+				for(b=1;b<=a;b++)
+				{
+					System.out.println("*");
+				}
+			}

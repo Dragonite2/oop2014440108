@@ -1,0 +1,25 @@
+import java.util.Scanner; //C언어에서 include의 역할과 비슷.
+
+public class ConditionalStatement {
+
+	public static void main(String[] args) {
+		int score;
+		
+		System.out.println("성적 입력 : ");
+		Scanner input = new Scanner(System.in); 
+		score = input.nextInt(); //키보드에서 숫자 입력
+		
+		System.out.println("성적 : " + score + " 점.");
+		//성적 60점 이상이면 합격, 미만이면 불합격
+		//비교 : 관계연산자 (>= 연산자 이용)
+		//if (조건식) {실행 문장(참일 경우)} else{실행 문장(거짓일 경우)}
+		
+		if(score >= 60)
+			System.out.println("합격.");
+		else
+			System.out.println("불합격.");
+		
+		//실행 문장이 1문장일 경우 중괄호를 생략하여도 무관.
+	}
+
+}
