@@ -20,7 +20,7 @@ public class MyCalculator extends JFrame implements ActionListener
 	public MyCalculator()
 	{
 		//필드값 초기화
-		multiplus = 0;
+		multiplus = 10;
 		A = 0; //A(addend), B(augend)
 		B = 0; //초기 가수, 피가수값 설정
 		S = A + B; //S는 sum의 약자.
@@ -58,11 +58,13 @@ public class MyCalculator extends JFrame implements ActionListener
 		plus.addActionListener(this);
 		
 		//패널 설정	
+		JPanel calc_design = new JPanel();
+		calc_design.setLayout(new FlowLayout());
 		JPanel module = new JPanel();
 		JPanel sev_to_nine = new JPanel();
 		JPanel four_to_six = new JPanel();
 		JPanel one_to_three= new JPanel();
-		JPanel zero_to_equal = new JPanel();
+		JPanel zero_to_clear = new JPanel();
 		
 		/*
 		배치 관리자 지정 및 디자인 설정
@@ -75,9 +77,12 @@ public class MyCalculator extends JFrame implements ActionListener
 		sev_to_nine.setLayout(new FlowLayout());
 		four_to_six.setLayout(new FlowLayout());
 		one_to_three.setLayout(new FlowLayout());
-		zero_to_equal.setLayout(new FlowLayout());	
+		zero_to_clear.setLayout(new FlowLayout());	
 
 		//패널에 컴포넌트 추가
+		calc_design.add(tf);
+		calc_design.add(result);
+		
 		sev_to_nine.add(num[7]);
 		sev_to_nine.add(num[8]);
 		sev_to_nine.add(num[9]);
@@ -90,19 +95,18 @@ public class MyCalculator extends JFrame implements ActionListener
 		one_to_three.add(num[2]);
 		one_to_three.add(num[3]);
 
-		zero_to_equal.add(num[0]);
-		zero_to_equal.add(plus);
-		zero_to_equal.add(result);
+		zero_to_clear.add(num[0]);
+		zero_to_clear.add(plus);
+		zero_to_clear.add(clear);
 				
-		module.add(tf);
-		module.add(clear);
+		
+		module.add(calc_design);
 		module.add(sev_to_nine);
 		module.add(four_to_six);
 		module.add(one_to_three);
-		module.add(zero_to_equal);
+		module.add(zero_to_clear);
 		module.add(warning);
 		
-		clear.setAlignmentX(CENTER_ALIGNMENT);
 		warning.setAlignmentX(CENTER_ALIGNMENT);
 		
 		this.add(module);
