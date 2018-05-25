@@ -59,7 +59,6 @@ public class MyCalculator extends JFrame implements ActionListener
 		
 		//패널 설정	
 		JPanel calc_design = new JPanel();
-		calc_design.setLayout(new FlowLayout());
 		JPanel module = new JPanel();
 		JPanel sev_to_nine = new JPanel();
 		JPanel four_to_six = new JPanel();
@@ -73,6 +72,8 @@ public class MyCalculator extends JFrame implements ActionListener
 		계산기 모듈은 BoxLayout으로 처리하여
 		계산기의 디자인 구현. 일부 컴포넌트는 중앙 정렬 배치로 모양을 잡았음.
 		*/
+
+		calc_design.setLayout(new FlowLayout());
 		module.setLayout(new BoxLayout(module, BoxLayout.Y_AXIS));
 		sev_to_nine.setLayout(new FlowLayout());
 		four_to_six.setLayout(new FlowLayout());
