@@ -10,7 +10,7 @@ public class MyCalculator extends JFrame implements ActionListener
 	private int A,B,S; //가수, 피가수, 결과값
 	private int temp; 
 	private JButton plus, clear, result; //특수 기능(+,=,C)
-	private boolean addswitch; //addend 모드(가수)인지, augend 모드(피가수)인지 구분짓기 위한 스위칭 변수
+	private boolean addswitch; //addend 모드(가수)인지, augend 모드(피가수)인지 구분짓기 위한 스위칭 변수. false일 경우 가수, true일 경우 피가수
 	private JButton[] num; //버튼 배열
 	private int multiplus; //다중 덧셈 기능 카운트 전용
 	private JLabel warning; //아무 기능 없는 주의문
@@ -44,9 +44,9 @@ public class MyCalculator extends JFrame implements ActionListener
 		//번호 버튼 컴포넌트 설정 및 이벤트 리스너 등록
 		for(int i = 0;i<10;i++)
 		{
-			this.num[i] = new JButton(""+i);
-			this.num[i].setActionCommand("number"+i);
-			this.num[i].addActionListener(this);
+			this.num[i] = new JButton(""+i); //버튼에 글자를 새긴다.
+			this.num[i].setActionCommand("number"+i); //버튼별로 ActionCommand가 있어야 한다.
+			this.num[i].addActionListener(this); //당연히 이벤트 리스너도 등록이 되어야 하기 때문에 배열로 리스너 등록을 한다.
 		}
 		
 		//각 컴포넌트에 이벤트 리스너 등록
@@ -111,11 +111,12 @@ public class MyCalculator extends JFrame implements ActionListener
 	}
 
 	//인터페이스 이벤트 리스너 메소드 구현
+	//else문을 쓰는 편이 일반적이지만, 다른 버튼과의 상호작용이 필요한 특성상 '조건문에 확실하게 특정 조건을 기입하는 편'이 나았을 거라고 생각하여 조건문을 일일이 작성하였음.
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
 		//특수 버튼 기능 지정
-		//C(Clear)
+		//C(Clear) - 모든 것을 초기화한다.
 		if(e.getActionCommand().equals("clear"))
 		{
 			tf.setText("0");
@@ -135,7 +136,7 @@ public class MyCalculator extends JFrame implements ActionListener
 			if(addswitch == false)
 			{
 				//일반적인 덧셈 기능
-				if(multiplus <= 1)
+				if(multiplus < 1)
 				{
 					S = Integer.parseInt(tf.getText());
 					tf.setText(""+this.S);
@@ -143,7 +144,7 @@ public class MyCalculator extends JFrame implements ActionListener
 				}
 				
 				//= 버튼을 누르지 않은채로 다중 덧셈 모드 사용 시
-				else if(multiplus > 1)
+				else if(multiplus >= 1)
 				{
 					S = A + Integer.parseInt(tf.getText());
 					tf.setText(""+this.S);
@@ -152,6 +153,7 @@ public class MyCalculator extends JFrame implements ActionListener
 				}
 			}
 			
+			//피가수가 지정된 경우
 			else if(addswitch == true)
 			{
 				//B값이 tf의 값을 읽어옴.
@@ -171,13 +173,14 @@ public class MyCalculator extends JFrame implements ActionListener
 			if(addswitch == false)
 			{
 				//A값에 입력한 수를 저장한 후, 피가수 모드로 바꾼다.	
-				multiplus++; //일단 '다중 덧셈 모드 카운트'를 쌓게 된다.
+				multiplus++; //'다중 덧셈 모드 카운트'를 쌓음.
 				//
 				if(multiplus <= 1) //정상적인 덧셈 모드(= 버튼을 이용하여 덧셈 카운트를 0으로 초기화한 경우)
 				{
 					A = Integer.parseInt(tf.getText()); //단순히 텍스트필드에 있는 값만 불러오는 것이 중요하다.
 					addswitch = true;
 					temp = 0; //담아뒀던 임시 숫자 그릇을 비움.  
+
 				}
 				
 				//+버튼을 계속 눌러 덧셈 카운터를 계속 쌓아올리는 경우
@@ -186,8 +189,10 @@ public class MyCalculator extends JFrame implements ActionListener
 					A = A + Integer.parseInt(tf.getText());  //이 때는 기존에 저장되어 있던 값을 포함하여 텍스트 필드의 값을 계산하는 것이 중요하다.
 					tf.setText(""+this.A);
 					addswitch = true;
-					temp = 0; //담아뒀던 임시 숫자 그릇을 비움.  
+					temp = 0; //담아뒀던 임시 숫자 그릇을 비움.
 				}
+				
+
 
 			}
 
