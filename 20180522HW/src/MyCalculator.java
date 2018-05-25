@@ -8,7 +8,7 @@ public class MyCalculator extends JFrame implements ActionListener
 	//필드 선언
 	private JTextField tf; //텍스트 필드
 	private int A,B,S; //가수, 피가수, 결과값
-	private int temp; 
+	private int temp; //계산기에 표시되는 동시에 A,B 값을 저장하기 위한 임시 값
 	private JButton plus, clear, result; //특수 기능(+,=,C)
 	private boolean addswitch; //addend 모드(가수)인지, augend 모드(피가수)인지 구분짓기 위한 스위칭 변수. false일 경우 가수, true일 경우 피가수
 	private JButton[] num; //버튼 배열
@@ -213,7 +213,14 @@ public class MyCalculator extends JFrame implements ActionListener
 			}
 		}
 
-		//번호 알고리즘. Switch문의 경우 default 부분에서 다른 커맨드와 꼬이는 경우가 발생한 관계로 if문으로 대체함.
+		/*
+		 번호 알고리즘. Switch문의 경우 default 부분에서 다른 커맨드와 꼬이는 경우가 발생한 관계로 if문으로 대체함.
+	
+		(알고리즘 설명)
+		temp 값에 버튼을 누를 때마다 10이 곱해지는 이유는, 보통 숫자를 순차적으로 입력할 때 3, 32, 324, ...식으로 입력이 되는데,
+		값이 증가하는 알고리즘이 [이전의 수]*10 + [현재 내가 누르고 있는 수]가 반복되기 때문이다.
+		그리고 +, =, C 등 특정 기능을 수행할 때 temp 값(임시로 담아두는 데이터)이 비워져야 하는 순간이 있을 때 temp 값을 초기화하는 부분이 존재한다.
+		*/
 		if(e.getActionCommand().equals("number0"))
 		{
 				tf.setText(""+(temp));
